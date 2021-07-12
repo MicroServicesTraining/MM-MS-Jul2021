@@ -3,9 +3,7 @@
  */
 package com.mm.vms.service;
 
-import java.util.List;
-
-import com.mm.vms.enitity.Vendor;
+import com.mm.vms.api.response.VendorResponse;
 
 /**
  * @author USER
@@ -13,6 +11,6 @@ import com.mm.vms.enitity.Vendor;
  */
 public interface VendorsService {
 
-	List<Vendor> findAllVendors();
+	VendorResponse findAllVendors();
 
 }

@@ -3,14 +3,14 @@
  */
 package com.mm.vms.api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mm.vms.enitity.Vendor;
+import com.mm.vms.api.response.VendorResponse;
 import com.mm.vms.service.VendorsService;
 
 /**
@@ -30,8 +30,13 @@ public class VendorsApi {
 	}
 
 	@GetMapping("/all")
-	public List<Vendor> findAllVendors() {
-		return vendorsService.findAllVendors();
+	public ResponseEntity<VendorResponse> findAllVendors() {
+		VendorResponse vendorResponse =  vendorsService.findAllVendors();
+		if(vendorResponse.getVendors() != null) {
+			return ResponseEntity.ok(vendorResponse);
+		}else {
+			return ResponseEntity.ok(vendorResponse).status(HttpStatus.NOT_FOUND).build();
+		}
 	}
 
 }
