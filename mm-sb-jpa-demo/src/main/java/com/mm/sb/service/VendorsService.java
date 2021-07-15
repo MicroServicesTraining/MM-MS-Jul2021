@@ -4,6 +4,7 @@
 package com.mm.sb.service;
 
 import com.mm.sb.api.response.VendorResponse;
+import com.mm.sb.entity.Vendor;
 
 /**
  * @author USER
@@ -12,5 +13,11 @@ import com.mm.sb.api.response.VendorResponse;
 public interface VendorsService {
 
 	VendorResponse findAllVendors();
+
+	VendorResponse createVendor(Vendor vendor);
+
+	VendorResponse modifyVendor(Vendor vendor, Long vendorId);
+
+	VendorResponse removeVendor(Long vendorId);
 
 }
