@@ -33,5 +33,14 @@ public class ProductController {
 	public ResponseEntity<ProductsResponse> loadProductDetailsById(@PathVariable(name = "skuno") Long productId){
 		return productService.loadProductDetailsById(productId);
 	}
-
+	
+	@GetMapping("/byname/{productName}")
+	public ResponseEntity<ProductsResponse> loadProductDetailsByName(@PathVariable String productName) {
+		return productService.loadProductDetailsByName(productName);
+	}
+	
+	@GetMapping("/bytoken/{str}")
+	public ResponseEntity<ProductsResponse> getProductsByString(@PathVariable String str) {
+		return productService.getProductsByString(str);
+	}
 }

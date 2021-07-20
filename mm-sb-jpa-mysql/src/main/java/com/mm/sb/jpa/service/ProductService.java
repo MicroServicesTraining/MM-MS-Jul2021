@@ -17,4 +17,8 @@ public interface ProductService {
 
 	ResponseEntity<ProductsResponse> loadProductDetailsById(Long productId);
 	
+	ResponseEntity<ProductsResponse> loadProductDetailsByName(String productName);
+	
+	ResponseEntity<ProductsResponse> getProductsByString(String str);
+	
 }

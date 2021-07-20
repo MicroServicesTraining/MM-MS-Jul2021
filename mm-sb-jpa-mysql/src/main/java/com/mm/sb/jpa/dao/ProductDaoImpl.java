@@ -35,5 +35,25 @@ public class ProductDaoImpl implements ProductDao{
 			return null;
 		}
 	}
+	
+	@Override
+	public Product loadProductDetailsByName(String productName) {
+		Optional<Product> result = productRepository.findByName(productName);
+		if(result.isPresent()) {
+			return result.get();
+		}else {
+			return null;
+		}
+	}
+	
+	@Override
+	public List<Product> getProductsByString(String str){
+		Optional<List<Product>> result = productRepository.getProductsByString(str);
+		if(result.isPresent()) {
+			return result.get();
+		}else {
+			return null;
+		}
+	}
 
 }

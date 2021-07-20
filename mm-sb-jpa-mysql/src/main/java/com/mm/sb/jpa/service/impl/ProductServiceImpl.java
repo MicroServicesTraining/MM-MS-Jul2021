@@ -59,4 +59,32 @@ public class ProductServiceImpl implements ProductService{
 		return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.OK);
 	}
 
+	@Override
+	public ResponseEntity<ProductsResponse> loadProductDetailsByName(String productName) {
+		ProductsResponse productResponse = new ProductsResponse();
+		Product product = productDao.loadProductDetailsByName(productName);
+		if(product == null) {
+			productResponse.setMessage(ProductServiceContants.NO_PRODUCT_AVAILABLE_BY_NAME);
+			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.NOT_FOUND);
+		}else {
+			productResponse.setProduct(productsUtil.convertToVo(product));
+			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.OK);
+		}	
+	}
+
+	@Override
+	public ResponseEntity<ProductsResponse> getProductsByString(String str) {
+		ProductsResponse productResponse = new ProductsResponse();
+		List<Product> productsList = productDao.getProductsByString(str);
+		if(productsList == null) {
+			productResponse.setMessage(ProductServiceContants.NO_PRODUCTS_AVAILABLE);
+			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.NOT_FOUND);
+		}else {
+			productResponse.setProductsList(productsUtil.convertToVosList(productsList));
+			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.OK);
+		}	
+	}
+	
+	
+
 }

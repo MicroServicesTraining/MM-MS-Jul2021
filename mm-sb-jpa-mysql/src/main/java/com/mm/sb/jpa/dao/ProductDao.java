@@ -17,4 +17,8 @@ public interface ProductDao {
 
 	Product loadProductDetailsById(Long productId);
 
+	Product loadProductDetailsByName(String productName);
+
+	List<Product> getProductsByString(String str);
+
 }
