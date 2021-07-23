@@ -84,7 +84,19 @@ public class ProductServiceImpl implements ProductService{
 			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.OK);
 		}	
 	}
-	
+
+	@Override
+	public ResponseEntity<ProductsResponse> getProductsByPriceRange(Double minPrice, Double maxPrice) {
+		ProductsResponse productResponse = new ProductsResponse();
+		List<Product> productsList = productDao.getProductsByPriceRange(minPrice, maxPrice);
+		if(productsList == null) {
+			productResponse.setMessage(ProductServiceContants.NO_PRODUCTS_AVAILABLE);
+			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.NOT_FOUND);
+		}else {
+			productResponse.setProductsList(productsUtil.convertToVosList(productsList));
+			return new ResponseEntity<ProductsResponse>(productResponse, HttpStatus.OK);
+		}
+	}
 	
 
 }

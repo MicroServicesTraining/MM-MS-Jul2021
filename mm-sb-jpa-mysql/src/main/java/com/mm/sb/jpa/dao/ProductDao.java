@@ -21,4 +21,6 @@ public interface ProductDao {
 
 	List<Product> getProductsByString(String str);
 
+	List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice);
+
 }

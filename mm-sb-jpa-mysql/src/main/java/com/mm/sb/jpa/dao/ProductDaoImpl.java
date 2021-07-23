@@ -56,4 +56,14 @@ public class ProductDaoImpl implements ProductDao{
 		}
 	}
 
+	@Override
+	public List<Product> getProductsByPriceRange(Double minPrice, Double maxPrice) {
+		Optional<List<Product>> result = productRepository.getProductsByPriceRange(minPrice, maxPrice);
+		if(result.isPresent()) {
+			return result.get();
+		}else {
+			return null;
+		}
+	}
+
 }

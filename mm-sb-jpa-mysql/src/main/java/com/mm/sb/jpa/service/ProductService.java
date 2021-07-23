@@ -20,5 +20,7 @@ public interface ProductService {
 	ResponseEntity<ProductsResponse> loadProductDetailsByName(String productName);
 	
 	ResponseEntity<ProductsResponse> getProductsByString(String str);
+
+	ResponseEntity<ProductsResponse> getProductsByPriceRange(Double minPrice, Double maxPrice);
 	
 }
