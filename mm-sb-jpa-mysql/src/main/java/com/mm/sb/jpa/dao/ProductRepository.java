@@ -50,25 +50,23 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	//Native Queries
 	
-	  @Query(value = "select * from products where name like %:searchToken%",
-	  nativeQuery = true) //Named parameters 
-	  Optional<List<Product>>
-	  getProductsByString(@Param(value = "searchToken") String str);
-	  
-	  @Query(value =
-	  "select * from products p where p.price > :minPrice and p.price < :maxPrice",
-	  nativeQuery = true) //Named parameters 
-	  Optional<List<Product>>
-	  getProductsByPriceRange(@Param(value = "minPrice") Double
-	  minPrice, @Param(value = "maxPrice") Double maxPrice);
-	 
-	
 	/*
-	 * @Query(value = "getProductsByString") //Named Query Optional<List<Product>>
+	 * @Query(value = "select * from products where name like %:searchToken%",
+	 * nativeQuery = true) //Named parameters Optional<List<Product>>
 	 * getProductsByString(@Param(value = "searchToken") String str);
 	 * 
-	 * @Query(value = "getProductsByPriceRange") //Named Query
-	 * Optional<List<Product>> getProductsByPriceRange(@Param(value = "minPrice")
-	 * Double minPrice, @Param(value = "maxPrice") Double maxPrice);
-	 */
+	 * @Query(value =
+	 * "select * from products p where p.price > :minPrice and p.price < :maxPrice",
+	 * nativeQuery = true) //Named parameters Optional<List<Product>>
+	 * getProductsByPriceRange(@Param(value = "minPrice") Double
+	 * minPrice, @Param(value = "maxPrice") Double maxPrice);
+	 */	 
+	
+	
+	  @Query(value = "getProductsByString") //Named Query 
+	  Optional<List<Product>> getProductsByString(@Param(value = "searchToken") String str);
+	  
+	  @Query(value = "getProductsByPriceRange") //Named Query
+	  Optional<List<Product>> getProductsByPriceRange(@Param(value = "minPrice") Double minPrice, @Param(value = "maxPrice") Double maxPrice);
+	 
 }
