@@ -12,12 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-@RequestMapping("/admin")
 public class DemoController {
+	
+	@GetMapping("/home")
+	public String showHomePage() {
+		return "<h1>Welcome to Demo APP</h1>";
+	}
 
-	@GetMapping
-	public String showWelcomePage() {
+	@GetMapping("/adminhome")
+	public String showAdminHomePage() {
 		return "<h1> Welcome Admin...</h1>";
+	}
+	
+	@GetMapping("/userhome")
+	public String showUserHomePage() {
+		return "<h1> Welcome User...</h1>";
 	}
 	
 }

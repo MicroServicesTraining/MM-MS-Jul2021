@@ -5,6 +5,7 @@ package com.mm.musec.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -32,8 +33,19 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 				// .withUser("ramu").password("{noop}ab34").roles("USER");
 				.withUser("ramu")
 				.password("{sha256}73bdb454efd868018dee874d866f375ad1ca2a45f44016af5a8f29e184277926de6ec9ea55e4cba8")
-				.roles("USER");
+				.roles("USER", "ADMIN");
 	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+		.antMatchers("/adminhome").hasRole("ADMIN")
+		.antMatchers("/userhome").hasAnyRole("USER", "ADMIN", "SUPERVISOR")
+		.antMatchers("/home").permitAll()
+		.and().formLogin();
+	}
+	
+	
 
 	/*
 	 * @Bean public PasswordEncoder getPasswordEncoder() { return
